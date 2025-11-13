@@ -7,177 +7,129 @@
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Aldrich', sans-serif;
-            background: #000;
-            color: #e8f5e9;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            font-family: 'Aldrich', sans-serif;
-            text-transform: uppercase;
-            text-align: center;
-            color: #3CB371;
-        }
-        h1 { font-size: 3em; margin: 0.5em 0; }
-        h2 { font-size: 2.2em; margin: 0.5em 0; }
-        h3 { font-size: 1.8em; }
+        html, body { height: 100%; overflow-x: hidden; }
 
+        /* FULL CYBERPUNK BACKGROUND — FIXED */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.imgur.com/kYa5nC4.jpg') center/cover no-repeat fixed;
+            z-index: -2;
+            background-attachment: fixed;
+        }
+
+        /* BLACK VOID OVERLAY WITH ANIMATED PIXEL TEARS */
+        .void-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* TOP PIXEL TEAR — FALLS APART BEFORE "CONSTRUCTION" */
+        .tear-top {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 720px; /* ← TUNE THIS */
+            background: linear-gradient(to bottom, transparent 85%, #000 100%);
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,80 Q55,95 40,88 Q25,95 0,85 Z" fill="black"/></svg>') bottom/100% 300px repeat-x;
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: tear-fall-top 12s infinite ease-in-out;
+        }
+
+        /* BOTTOM PIXEL TEAR — REVEALS CITY AFTER WEEKS */
+        .tear-bottom {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 680px; /* ← TUNE THIS */
+            background: #000;
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,100 L100,20 Q45,5 60,12 Q75,5 100,15 Q80,8 0,18 Z" fill="black"/></svg>') top/100% 300px repeat-x;
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: tear-fall-bottom 14s infinite ease-in-out;
+        }
+
+        @keyframes tear-fall-top {
+            0%, 100% { transform: translateY(0) skewX(0); }
+            50% { transform: translateY(12px) skewX(3deg); }
+        }
+        @keyframes tear-fall-bottom {
+            0%, 100% { transform: translateY(0) skewX(0); }
+            50% { transform: translateY(-10px) skewX(-2deg); }
+        }
+
+        /* MAIN CONTAINER — SEMI-TRANSPARENT */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.75);
             padding: 30px;
             border-radius: 10px;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
         }
 
-        /* GLITCH HEADING */
-        h2.glitch {
-            font-size: 28px !important;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: #ccffcc !important;
+        /* WINDOWS TO THE CITY — DAY BOXES + WEEK CARDS */
+        .days-grid, .weeks-grid {
+            background: transparent !important;
+            padding: 60px 20px;
             position: relative;
-            display: inline-block;
-            animation: glitch-main 4.2s steps(30) infinite;
+            z-index: 3;
         }
-        h2.glitch::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            color: rgba(255, 255, 255, 0.35);
-            text-shadow: -0.75px 0 rgba(188,244,213,0.35), 0.75px 0 rgba(188,244,213,0.35);
-            animation: glitch-layer 4.2s steps(30) infinite reverse;
-            pointer-events: none;
+        .day-box, .week-card {
+            background: rgba(0, 0, 0, 0.35) !important;
+            backdrop-filter: blur(8px);
+            border: 2px solid #b2ff59 !important;
+            box-shadow: 0 0 40px rgba(178, 255, 89, 0.7) !important;
         }
+        .day-box:hover, .week-card:hover {
+            border-color: #ccff90 !important;
+            box-shadow: 0 0 80px rgba(204, 255, 144, 0.9) !important;
+            transform: translateY(-12px) !important;
+        }
+
+        /* REST OF YOUR ORIGINAL STYLES (unchanged) */
+        h1, h2, h3 { font-family: 'Aldrich', sans-serif; text-transform: uppercase; text-align: center; color: #3CB371; }
+        h1 { font-size: 3em; margin: 0.5em 0; }
+        h2 { font-size: 2.2em; margin: 0.5em 0; }
+        h3 { font-size: 1.8em; }
+        h2.glitch { font-size: 28px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; position: relative; display: inline-block; animation: glitch-main 4.2s steps(30) infinite; }
+        h2.glitch::before { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: rgba(255,255,255,0.35); text-shadow: -0.75px 0 rgba(188,244,213,0.35), 0.75px 0 rgba(188,244,213,0.35); animation: glitch-layer 4.2s steps(30) infinite reverse; pointer-events: none; }
         @keyframes glitch-main { 0%,100%{transform:translate(0)} 20%{transform:translate(-1.5px,0)} 40%{transform:translate(1.8px,0)} 60%{transform:translate(-3.5px,0)} 80%{transform:translate(2.8px,0)} }
         @keyframes glitch-layer { 0%,100%{transform:translate(0)} 20%{transform:translate(2px,0)} 40%{transform:translate(-2.2px,0)} 60%{transform:translate(4px,0)} 80%{transform:translate(-3px,0)} }
-
         h2.static { font-size: 26px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; }
-
         .highlight { color: #993399; font-weight: bold; }
         ul { padding-left: 1.5em; list-style: none; }
         li { position: relative; margin: 0.8em 0; }
         li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
-
-        .neon-break {
-            border: none;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent);
-            box-shadow: 0 0 15px #b2ff59, 0 0 30px #ccff90;
-            margin: 60px auto;
-            max-width: 80%;
-            border-radius: 2px;
-        }
-        .construction {
-            font-size: 1.4em;
-            color: #993399;
-            text-align: center;
-            margin: 2em 0;
-            font-weight: bold;
-        }
-
-        /* 4 DAY BOXES — PERFECT */
-        .days-grid {
-            display: flex !important;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            padding: 50px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .day-box {
-            flex: 1 1 300px;
-            min-width: 280px;
-            max-width: 360px;
-            background: rgba(0, 0, 0, 0.85);
-            border: 2px solid #b2ff59;
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(178, 255, 89, 0.5);
-            transition: all 0.4s ease;
-        }
-        .day-box:hover {
-            border-color: #ccff90;
-            box-shadow: 0 0 40px rgba(204, 255, 144, 0.7);
-            transform: translateY(-10px);
-        }
-        .day-title {
-            color: #ccffcc;
-            font-size: 1.9em;
-            letter-spacing: 3px;
-            margin: 0 0 20px 0;
-            text-shadow: 0 0 15px rgba(204, 255, 204, 0.8);
-        }
-        .day-box p {
-            color: #e8f5e9;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* 3 WEEK CARDS — FORCED SIDE-BY-SIDE */
-        .weeks-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-        .week-card {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 16px;
-            padding: 28px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .week-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(178, 255, 89, 0.4);
-            border-color: #b2ff59;
-        }
-        .week-card h2 {
-            color: #3CB371;
-            font-size: 1.6em;
-            margin-bottom: 8px;
-        }
-        .week-card h3 {
-            color: #ccffcc;
-            font-size: 1.3em;
-            margin: 0 0 12px;
-        }
+        .neon-break { border: none; height: 3px; background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent); box-shadow: 0 0 15px #b2ff59, 0 0 30px #ccff90; margin: 60px auto; max-width: 80%; border-radius: 2px; }
+        .construction { font-size: 1.4em; color: #993399; text-align: center; margin: 2em 0; font-weight: bold; }
+        .days-grid { display: flex !important; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 1400px; margin: 0 auto; }
+        .day-box { flex: 1 1 300px; min-width: 280px; max-width: 360px; border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.4s ease; }
+        .day-title { color: #ccffcc; font-size: 1.9em; letter-spacing: 3px; margin: 0 0 20px 0; text-shadow: 0 0 15px rgba(204, 255, 204, 0.8); }
+        .day-box p { color: #e8f5e9; font-size: 1.2em; line-height: 1.6; margin: 0; }
+        .weeks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .week-card { border-radius: 16px; padding: 28px; transition: all 0.3s ease; }
+        .week-card h2 { color: #3CB371; font-size: 1.6em; margin-bottom: 8px; }
+        .week-card h3 { color: #ccffcc; font-size: 1.3em; margin: 0 0 12px; }
         .emoji { font-weight: bold; color: #b2ff59; }
-
-        @media (max-width: 900px) {
-            .weeks-grid { grid-template-columns: 1fr; }
-            .days-grid { flex-direction: column; align-items: center; }
-            .day-box { max-width: 90%; }
-        }
-
-        blockquote {
-            border-left: 4px solid #0f0;
-            padding-left: 20px;
-            font-style: italic;
-            margin: 2em 0;
-            color: #b2ff59;
-        }
-        footer {
-            text-align: center;
-            margin: 80px 0 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
+        @media (max-width: 900px) { .weeks-grid { grid-template-columns: 1fr; } .days-grid { flex-direction: column; align-items: center; } .day-box { max-width: 90%; } }
+        blockquote { border-left: 4px solid #0f0; padding-left: 20px; font-style: italic; margin: 2em 0; color: #b2ff59; }
+        footer { text-align: center; margin: 80px 0 20px; font-size: 0.9em; color: #666; }
         a { color: #0f0; text-decoration: none; }
         a:hover { color: #ccff90; text-shadow: 0 0 10px #ccff90; }
     </style>
 </head>
 <body>
+
+    <!-- BLACK VOID + PIXEL TEARS -->
+    <div class="void-overlay">
+        <div class="tear-top"></div>
+        <div class="tear-bottom"></div>
+    </div>
+
     <div class="container">
         <div style="text-align: center;">
             <img src="https://i.imgur.com/bXX93Eu.png" alt="AI.CASH Logo" style="max-width: 100%; height: auto;" />
@@ -185,11 +137,9 @@
         <br>
         <h2 class="glitch" data-text="KNOWLEDGE ISNT POWER">KNOWLEDGE ISNT POWER</h2><br>
         <span class="highlight">UNTIL IT PAYS YOU</span>
-
         <p style="text-align:left; font-size:1.0em;">
             AI.CASH is a 30-day crash course that transforms beginners into income-earning creators through practical AI training. This program blends accessible education with applied strategy, helping individuals move from zero experience and $0 to generating up to $500 or more in their first month.
         </p>
-
         <h2 class="static">LEARN FAST, EARN FASTER</h2>
         <p style="text-align:left; font-size:1.2em;">
             Whether you’re an entrepreneur, student, or freelancer, AI.CASH equips you with the tools, strategies, and skills to start earning immediately.<br>
@@ -200,18 +150,16 @@
                 <li>Portfolio in 30 minutes: Screenshot your audits + client testimonials = instant credibility.</li>
             </ul>
         </p>
-
         <hr class="neon-break">
         <div class="construction">( WEBPAGE UNDER CONSTRUCTION )</div>
         <hr class="neon-break">
-
         <h1>Start getting paid after 1 week!</h1>
         <p style="text-align:center;">
             Most “AI courses” waste months teaching theory. We don’t.<br><br>
             In only 7 days, you’ll walk away with real, billable skills that businesses and creators are already paying for right now.
         </p>
 
-        <!-- 4 PERFECT DAY BOXES -->
+        <!-- 4 DAY BOXES — WINDOWS TO THE CITY -->
         <div class="days-grid">
             <div class="day-box">
                 <h3 class="day-title">Day 1–2</h3>
@@ -233,7 +181,7 @@
 
         <hr class="neon-break">
 
-        <!-- 3 WEEK CARDS — FORCED SIDE-BY-SIDE -->
+        <!-- 3 WEEK COLUMNS — WINDOWS TO THE CITY -->
         <div class="weeks-grid">
             <div class="week-card">
                 <h2>Week 2 – Earn $200–$800</h2>
@@ -259,11 +207,9 @@
         </div>
 
         <hr class="neon-break">
-
         <blockquote>
             "The age of automation isn’t coming—it’s already here. AI.CASH bridges the gap between technology and opportunity, giving you the systems to earn smarter, faster, and more sustainably. You don’t need to predict the future when you can help build it. Start today and be part of the revolution shaping tomorrow’s economy." <br>-ChatGPT
         </blockquote>
-
         <h2>Get in touch</h2>
         <p style="text-align:center;">
             E-mail: <a href="mailto:AI.CASH@knowledgeisntpower.com">AI.CASH@knowledgeisntpower.com</a>
@@ -272,11 +218,11 @@
 
     <footer>©Copyright. All rights reserved.</footer>
 
-<script>
-  if (location.protocol !== 'https:') {
-    location.replace('https://' + location.host + location.pathname + location.search);
-  }
-</script>
-    
+    <!-- AUTO HTTPS REDIRECT -->
+    <script>
+        if (location.protocol !== 'https:') {
+            location.replace('https://' + location.host + location.pathname + location.search);
+        }
+    </script>
 </body>
 </html>
