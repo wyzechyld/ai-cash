@@ -7,19 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; overflow-x: hidden; }
+        html, body { height: 100%; overflow-x: hidden; background: #000; }
 
-        /* FULL CYBERPUNK BACKGROUND — FIXED */
+        /* CYBERPUNK CITY BACKGROUND — FIXED DIRECT LINK */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://i.imgur.com/kYa5nC4.jpg') center/cover no-repeat fixed;
+            background: url('https://i.imgur.com/kYa5nC4.png') center/cover no-repeat fixed;
             z-index: -2;
             background-attachment: fixed;
         }
 
-        /* BLACK VOID OVERLAY WITH ANIMATED PIXEL TEARS */
+        /* BLACK VOID WITH ANIMATED PIXEL TEARS */
         .void-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -28,70 +28,78 @@
             pointer-events: none;
         }
 
-        /* TOP PIXEL TEAR — FALLS APART BEFORE "CONSTRUCTION" */
+        /* TOP TEAR — CUTS BEFORE "CONSTRUCTION" */
         .tear-top {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 720px; /* ← TUNE THIS */
-            background: linear-gradient(to bottom, transparent 85%, #000 100%);
-            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,80 Q55,95 40,88 Q25,95 0,85 Z" fill="black"/></svg>') bottom/100% 300px repeat-x;
+            top: 0; left: 0; width: 100%; height: 750px; /* ← ADJUST THIS */
+            background: linear-gradient(to bottom, transparent 80%, #000 100%);
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,82 Q60,98 35,88 Q15,95 0,85 Z" fill="black"/></svg>') bottom/100% 280px repeat-x;
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
-            animation: tear-fall-top 12s infinite ease-in-out;
+            animation: tear-top 11s infinite ease-in-out;
         }
 
-        /* BOTTOM PIXEL TEAR — REVEALS CITY AFTER WEEKS */
+        /* BOTTOM TEAR — REVEALS CITY AFTER WEEK CARDS */
         .tear-bottom {
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 680px; /* ← TUNE THIS */
+            bottom: 0; left: 0; width: 100%; height: 720px; /* ← ADJUST THIS */
             background: #000;
-            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,100 L100,20 Q45,5 60,12 Q75,5 100,15 Q80,8 0,18 Z" fill="black"/></svg>') top/100% 300px repeat-x;
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,100 L100,18 Q40,2 65,12 Q85,5 100,15 Q75,8 0,20 Z" fill="black"/></svg>') top/100% 280px repeat-x;
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
-            animation: tear-fall-bottom 14s infinite ease-in-out;
+            animation: tear-bottom 13s infinite ease-in-out;
         }
 
-        @keyframes tear-fall-top {
-            0%, 100% { transform: translateY(0) skewX(0); }
-            50% { transform: translateY(12px) skewX(3deg); }
+        @keyframes tear-top {
+            0%,100% { transform: translateY(0) skewX(0); }
+            50% { transform: translateY(15px) skewX(4deg); }
         }
-        @keyframes tear-fall-bottom {
-            0%, 100% { transform: translateY(0) skewX(0); }
-            50% { transform: translateY(-10px) skewX(-2deg); }
+        @keyframes tear-bottom {
+            0%,100% { transform: translateY(0) skewX(0); }
+            50% { transform: translateY(-12px) skewX(-3deg); }
         }
 
-        /* MAIN CONTAINER — SEMI-TRANSPARENT */
+        /* MAIN CONTAINER — GLASS PANEL */
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 30px;
-            border-radius: 10px;
+            background: rgba(10, 10, 15, 0.82);
+            padding: 35px;
+            border-radius: 12px;
             position: relative;
             z-index: 2;
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(178, 255, 89, 0.3);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.2);
         }
 
-        /* WINDOWS TO THE CITY — DAY BOXES + WEEK CARDS */
+        /* TEXT FIX — ALWAYS VISIBLE */
+        body, p, li, h1, h2, h3, .highlight, .construction, blockquote, footer {
+            color: #e8f5e9 !important;
+        }
+
+        /* WINDOWS TO THE CITY */
         .days-grid, .weeks-grid {
             background: transparent !important;
-            padding: 60px 20px;
+            padding: 70px 20px;
             position: relative;
             z-index: 3;
         }
         .day-box, .week-card {
-            background: rgba(0, 0, 0, 0.35) !important;
-            backdrop-filter: blur(8px);
+            background: rgba(5, 5, 10, 0.45) !important;
+            backdrop-filter: blur(12px);
             border: 2px solid #b2ff59 !important;
-            box-shadow: 0 0 40px rgba(178, 255, 89, 0.7) !important;
+            box-shadow: 0 0 50px rgba(178, 255, 89, 0.8) !important;
+            transition: all 0.4s ease;
         }
         .day-box:hover, .week-card:hover {
             border-color: #ccff90 !important;
-            box-shadow: 0 0 80px rgba(204, 255, 144, 0.9) !important;
-            transform: translateY(-12px) !important;
+            box-shadow: 0 0 100px rgba(204, 255, 144, 1) !important;
+            transform: translateY(-15px) !important;
         }
 
-        /* REST OF YOUR ORIGINAL STYLES (unchanged) */
-        h1, h2, h3 { font-family: 'Aldrich', sans-serif; text-transform: uppercase; text-align: center; color: #3CB371; }
+        /* REST OF YOUR ORIGINAL STYLES — CLEANED & FIXED */
+        h1, h2, h3 { font-family: 'Aldrich', sans-serif; text-transform: uppercase; text-align: center; color: #3CB371 !important; }
         h1 { font-size: 3em; margin: 0.5em 0; }
         h2 { font-size: 2.2em; margin: 0.5em 0; }
         h3 { font-size: 1.8em; }
@@ -100,26 +108,25 @@
         @keyframes glitch-main { 0%,100%{transform:translate(0)} 20%{transform:translate(-1.5px,0)} 40%{transform:translate(1.8px,0)} 60%{transform:translate(-3.5px,0)} 80%{transform:translate(2.8px,0)} }
         @keyframes glitch-layer { 0%,100%{transform:translate(0)} 20%{transform:translate(2px,0)} 40%{transform:translate(-2.2px,0)} 60%{transform:translate(4px,0)} 80%{transform:translate(-3px,0)} }
         h2.static { font-size: 26px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; }
-        .highlight { color: #993399; font-weight: bold; }
+        .highlight { color: #ff00ff !important; font-weight: bold; }
         ul { padding-left: 1.5em; list-style: none; }
-        li { position: relative; margin: 0.8em 0; }
         li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
-        .neon-break { border: none; height: 3px; background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent); box-shadow: 0 0 15px #b2ff59, 0 0 30px #ccff90; margin: 60px auto; max-width: 80%; border-radius: 2px; }
-        .construction { font-size: 1.4em; color: #993399; text-align: center; margin: 2em 0; font-weight: bold; }
-        .days-grid { display: flex !important; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 1400px; margin: 0 auto; }
-        .day-box { flex: 1 1 300px; min-width: 280px; max-width: 360px; border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.4s ease; }
-        .day-title { color: #ccffcc; font-size: 1.9em; letter-spacing: 3px; margin: 0 0 20px 0; text-shadow: 0 0 15px rgba(204, 255, 204, 0.8); }
-        .day-box p { color: #e8f5e9; font-size: 1.2em; line-height: 1.6; margin: 0; }
-        .weeks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 60px auto; padding: 0 20px; }
-        .week-card { border-radius: 16px; padding: 28px; transition: all 0.3s ease; }
-        .week-card h2 { color: #3CB371; font-size: 1.6em; margin-bottom: 8px; }
-        .week-card h3 { color: #ccffcc; font-size: 1.3em; margin: 0 0 12px; }
-        .emoji { font-weight: bold; color: #b2ff59; }
+        .neon-break { border: none; height: 3px; background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent); box-shadow: 0 0 20px #b2ff59, 0 0 40px #ccff90; margin: 70px auto; max-width: 80%; border-radius: 2px; }
+        .construction { font-size: 1.5em; color: #ff00ff !important; text-align: center; margin: 2.5em 0; font-weight: bold; text-shadow: 0 0 15px #ff00ff; }
+        .days-grid { display: flex !important; flex-wrap: wrap; gap: 35px; justify-content: center; max-width: 1400px; margin: 0 auto; }
+        .day-box { flex: 1 1 300px; min-width: 280px; max-width: 360px; border-radius: 18px; padding: 35px 25px; text-align: center; }
+        .day-title { color: #ccffcc; font-size: 2em; letter-spacing: 3px; margin: 0 0 22px 0; text-shadow: 0 0 20px rgba(204, 255, 204, 0.9); }
+        .day-box p { font-size: 1.25em; line-height: 1.7; }
+        .weeks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; max-width: 1200px; margin: 70px auto; padding: 0 20px; }
+        .week-card { border-radius: 18px; padding: 32px; }
+        .week-card h2 { color: #3CB371; font-size: 1.7em; margin-bottom: 10px; }
+        .week-card h3 { color: #ccffcc; font-size: 1.4em; margin: 0 0 14px; }
+        .emoji { font-weight: bold; color: #b2ff59; font-size: 1.1em; }
         @media (max-width: 900px) { .weeks-grid { grid-template-columns: 1fr; } .days-grid { flex-direction: column; align-items: center; } .day-box { max-width: 90%; } }
-        blockquote { border-left: 4px solid #0f0; padding-left: 20px; font-style: italic; margin: 2em 0; color: #b2ff59; }
-        footer { text-align: center; margin: 80px 0 20px; font-size: 0.9em; color: #666; }
-        a { color: #0f0; text-decoration: none; }
-        a:hover { color: #ccff90; text-shadow: 0 0 10px #ccff90; }
+        blockquote { border-left: 5px solid #0f0; padding-left: 25px; font-style: italic; margin: 3em 0; color: #b2ff59 !important; font-size: 1.1em; }
+        footer { text-align: center; margin: 100px 0 30px; font-size: 0.9em; color: #666 !important; }
+        a { color: #0f0 !important; text-decoration: none; }
+        a:hover { color: #ccff90 !important; text-shadow: 0 0 15px #ccff90; }
     </style>
 </head>
 <body>
@@ -159,7 +166,7 @@
             In only 7 days, you’ll walk away with real, billable skills that businesses and creators are already paying for right now.
         </p>
 
-        <!-- 4 DAY BOXES — WINDOWS TO THE CITY -->
+        <!-- 4 DAY BOXES — GLASS WINDOWS TO CITY -->
         <div class="days-grid">
             <div class="day-box">
                 <h3 class="day-title">Day 1–2</h3>
@@ -181,7 +188,7 @@
 
         <hr class="neon-break">
 
-        <!-- 3 WEEK COLUMNS — WINDOWS TO THE CITY -->
+        <!-- 3 WEEK COLUMNS — GLASS WINDOWS TO CITY -->
         <div class="weeks-grid">
             <div class="week-card">
                 <h2>Week 2 – Earn $200–$800</h2>
@@ -218,7 +225,7 @@
 
     <footer>©Copyright. All rights reserved.</footer>
 
-    <!-- AUTO HTTPS REDIRECT -->
+    <!-- HTTPS REDIRECT -->
     <script>
         if (location.protocol !== 'https:') {
             location.replace('https://' + location.host + location.pathname + location.search);
