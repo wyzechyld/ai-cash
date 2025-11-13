@@ -1,63 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI.CASH – Full 30-Day Curriculum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
-    <style>
-        /* === COPY ALL CSS FROM index.html === */
-        /* (Same :root, body, glitch, neon-break, etc.) */
-        /* === PLUS TAP-TO-REVEAL FOR MOBILE === */
-        .day-box, .week-card { cursor: pointer; }
-        .day-box .day-content, .week-card .week-content { opacity: 0; visibility: hidden; transition: .4s; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 85%; z-index: 1; }
-        .day-box.active .day-content, .week-card.active .week-content { opacity: 1; visibility: visible; }
-        .day-box.active .day-title, .week-card.active h2 { opacity: 0; transform: translateY(-20px); }
-        @media (hover: hover) {
-            .day-box:hover .day-title, .week-card:hover h2 { opacity:0; transform:translateY(-20px); }
-            .day-box:hover .day-content, .week-card:hover .week-content { opacity:1; visibility:visible; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI.CASH – Full 28-Day Program</title>
+  <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+  <style>
+    :root { --p: #3CB371; --a: #2E9B6A; --l: #A8E6CF; --g: rgba(60,179,113,0.7); }
+    body { font-family: 'Aldrich', sans-serif; color: #e8f5e9; background: radial-gradient(circle at center, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://i.imgur.com/kYa5nC4.jpg') center/cover fixed; padding: 20px; min-height: 100vh; }
+    .c { max-width: 1100px; margin: 0 auto; }
+    h1, h2 { color: var(--l); text-align: center; }
+    .week { background: rgba(15,25,20,.92); padding: 30px; margin: 40px 0; border-radius: 16px; border: 1px solid var(--p); box-shadow: 0 0 40px var(--g); }
+    .day { background: rgba(20,30,25,.9); padding: 18px; margin: 12px 0; border-radius: 12px; cursor: pointer; }
+    .day h3 { margin: 0; color: var(--l); }
+    .content { display: none; margin-top: 10px; font-size: 0.95em; }
+    .day.active .content { display: block; }
+    .day.active h3 { opacity: 0.6; }
+    a { color: var(--a); text-decoration: underline; }
+    .tap-hint { font-size: 0.8em; color: #aaa; text-align: center; margin: 10px 0; }
+  </style>
 </head>
 <body>
 
-    <!-- SAME HEADER, NAV, THEME TOGGLE -->
-
-    <div class="section top">
-        <h1>FULL 30-DAY CURRICULUM</h1>
-        <p style="font-size:1.2em; max-width:800px; margin:30px auto; text-align:center;">
-            Welcome! Here’s your <strong>complete roadmap</strong> to earning with AI.
-        </p>
-    </div>
+  <div class="c">
+    <h1>AI.CASH – 28-Day AI Monetization Program</h1>
+    <p style="text-align:center; color:#ccc;">🔒 Members-only • Tap to expand</p>
+    <p class="tap-hint">📱 Tap on mobile • 👆 Click on desktop</p>
 
     <!-- WEEK 1 -->
-    <h2 style="text-align:center; color:var(--light); margin:60px 0 40px;">Week 1: AI Basics</h2>
-    <div class="days-grid" style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; max-width:1200px; margin:0 auto;">
-        <div class="day-box"><h3 class="day-title">Day 1–2</h3><div class="day-content"><strong>AI Concepts</strong><br>Elements of AI (1-2)</div></div>
-        <div class="day-box"><h3 class="day-title">Day 3–4</h3><div class="day-content"><strong>Neural Nets + Ethics</strong><br>Google AI Essentials</div></div>
-        <div class="day-box"><h3 class="day-title">Day 5–7</h3><div class="day-content"><strong>Hands-On Tools</strong><br>ChatGPT, Gemini, Grok</div></div>
+    <div class="week">
+      <h2>Week 1: AI Basics & Fundamentals</h2>
+      <div class="day"><h3>Day 1: Introduction to AI Concepts</h3><div class="content">Learn what AI is, history, real-world applications. <br><strong>Resource:</strong> <a href="https://www.elementsofai.com">Elements of AI</a> (modules 1-2). Watch first 2 hours of this 10-hour YouTube AI tutorial for beginners.</div></div>
+      <div class="day"><h3>Day 2: Types of AI and Machine Learning Overview</h3><div class="content">Dive into supervised/unsupervised learning and basic algorithms. <br><strong>Resource:</strong> Continue “Elements of AI” (modules 3-4). Read the DataCamp guide section on AI fundamentals.</div></div>
+      <div class="day"><h3>Day 3: Neural Networks and Deep Learning Basics</h3><div class="content">Explore how AI “learns” through networks. <br><strong>Resource:</strong> Enroll in Google’s free “AI Essentials” course (first 2 lessons). Supplement with IBM SkillsBuild’s free AI intro modules.</div></div>
+      <div class="day"><h3>Day 4: Ethics and Bias in AI</h3><div class="content">Understand responsible AI use, crucial for monetization (e.g., avoiding plagiarized content). <br><strong>Resource:</strong> Finish “Elements of AI” ethics section. Watch related segments in the YouTube tutorial (hours 3-4).</div></div>
+      <div class="day"><h3>Day 5: Hands-On with Free AI Tools</h3><div class="content">Experiment with no-code tools like ChatGPT (free tier) for simple queries. <br><strong>Resource:</strong> Google’s AI skills page for interactive tools. Try prompts from DataCamp’s beginner tips.</div></div>
+      <div class="day"><h3>Day 6: Review and Quiz Yourself</h3><div class="content">Recap Week 1; test knowledge with online quizzes. <br><strong>Resource:</strong> Use free quizzes from IBM SkillsBuild. Review Reddit’s curated list of beginner courses for quick overviews.</div></div>
+      <div class="day"><h3>Day 7: Rest/Exploration</h3><div class="content">Explore one optional course from Uxcelt’s top 12 free AI list, like a scikit-learn intro. Journal potential monetization ideas (e.g., AI content creation).</div></div>
     </div>
 
-    <!-- WEEK 2, 3, 4 (same pattern) -->
-    <h2 style="text-align:center; color:var(--light); margin:80px 0 40px;">Week 2–4: Monetization</h2>
-    <div class="weeks-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:35px; max-width:1200px; margin:0 auto;">
-        <div class="week-card"><h2>Week 2</h2><div class="week-content">Python + Fiverr Tools ($200–$800)</div></div>
-        <div class="week-card"><h2>Week 3</h2><div class="week-content">Prompts + No-Code ($500–$2K)</div></div>
-        <div class="week-card"><h2>Week 4</h2><div class="week-content">Portfolio + Retainers ($1K–$5K)</div></div>
+    <!-- WEEK 2 -->
+    <div class="week">
+      <h2>Week 2: Machine Learning and Data Skills</h2>
+      <div class="day"><h3>Day 8: Python for AI Basics</h3><div class="content">Get comfortable with Python (essential for many free AI platforms). <br><strong>Resource:</strong> Medium’s top AI courses recommend freeCodeCamp’s Python for ML (via their list). Watch YouTube tutorial sections on Python (hours 5-6).</div></div>
+      <div class="day"><h3>Day 9: Data Processing and Visualization</h3><div class="content">Learn to handle datasets with free libraries like Pandas. <br><strong>Resource:</strong> Google’s AI Essentials data modules. Reddit lists beginner ML courses (e.g., Andrew Ng’s free intro on Coursera).</div></div>
+      <div class="day"><h3>Day 10: Supervised Learning Algorithms</h3><div class="content">Cover regression and classification. <br><strong>Resource:</strong> Uxcelt’s recommended free courses on scikit-learn. DataCamp guide’s ML section.</div></div>
+      <div class="day"><h3>Day 11: Unsupervised Learning and Clustering</h3><div class="content">Explore patterns in data. <br><strong>Resource:</strong> IBM’s free AI resources on clustering. YouTube tutorial (hours 7-8).</div></div>
+      <div class="day"><h3>Day 12: Introduction to Generative AI</h3><div class="content">Learn about tools like DALL-E (free trials) for image generation. <br><strong>Resource:</strong> Google’s AI tools page for generative demos. Medium’s top courses on generative AI.</div></div>
+      <div class="day"><h3>Day 13: Mini Project: Simple ML Model</h3><div class="content">Build a basic predictor using free Google Colab. <br><strong>Resource:</strong> Follow tutorials from Reddit’s curated list.</div></div>
+      <div class="day"><h3>Day 14: Review and Coding Practice</h3><div class="content">Practice on Kaggle’s free datasets. <br><strong>Resource:</strong> DataCamp tips for practice.</div></div>
     </div>
 
-    <div style="text-align:center; margin:100px 0;">
-        <a href="/dashboard.html" style="padding:16px 40px; background:var(--accent); color:#fff; border-radius:30px; text-decoration:none; font-size:1.2em; box-shadow:0 0 40px var(--glow-strong);">
-            GO TO YOUR DASHBOARD
-        </a>
+    <!-- WEEK 3 -->
+    <div class="week">
+      <h2>Week 3: Practical AI Applications and Tools</h2>
+      <div class="day"><h3>Day 15: Prompt Engineering for LLMs</h3><div class="content">Master using ChatGPT/Gemini for tasks. <br><strong>Resource:</strong> Uxcelt’s prompt engineering course.</div></div>
+      <div class="day"><h3>Day 16: AI for Content Creation</h3><div class="content">Generate text/images with free tools like Canva AI or Hugging Face. <br><strong>Resource:</strong> YouTube tutorial on generative tools (hours 9-10).</div></div>
+      <div class="day"><h3>Day 17: AI in Business and Automation</h3><div class="content">Use tools for chatbots or SEO. <br><strong>Resource:</strong> IBM’s applied AI modules.</div></div>
+      <div class="day"><h3>Day 18: Computer Vision and NLP Basics</h3><div class="content">Intro to image/text processing. <br><strong>Resource:</strong> Medium’s recommended courses.</div></div>
+      <div class="day"><h3>Day 19: Building AI Apps with No-Code</h3><div class="content">Use Bubble or Adalo free tiers. <br><strong>Resource:</strong> DataCamp’s app-building tips.</div></div>
+      <div class="day"><h3>Day 20: Project: AI-Powered Tool</h3><div class="content">Create a simple chatbot. <br><strong>Resource:</strong> Reddit list’s practical courses.</div></div>
+      <div class="day"><h3>Day 21: Rest/Advanced Exploration</h3><div class="content">Dive into one from Uxcelt’s list.</div></div>
     </div>
 
-    <script>
-        // TAP TO REVEAL
-        document.querySelectorAll('.day-box, .week-card').forEach(el => {
-            el.add onEvent('click', () => el.classList.toggle('active'));
-        });
-        // SAME DARK MODE, OBSERVER, ETC.
-    </script>
+    <!-- WEEK 4 -->
+    <div class="week">
+      <h2>Week 4: Monetization Strategies and Projects</h2>
+      <div class="day"><h3>Day 22: Freelance AI Services</h3><div class="content">Offer writing/SEO on Fiverr using AI tools. <br><strong>Resource:</strong> Watch YouTube on lazy AI money methods. Hostinger’s AI writing service guide.</div></div>
+      <div class="day"><h3>Day 23: Content Creation & Affiliate Marketing</h3><div class="content">Create AI-generated blogs/videos; monetize via ads/affiliates. <br><strong>Resource:</strong> Shopify’s ideas. RightBlogger’s ways.</div></div>
+      <div class="day"><h3>Day 24: AI Video & Copywriting</h3><div class="content">Use free tools like CapCut AI for videos. <br><strong>Resource:</strong> Forbes side hustle list.</div></div>
+      <div class="day"><h3>Day 25: Chatbot Development & Sales</h3><div class="content">Build/sell bots on free platforms. <br><strong>Resource:</strong> IRA Skills tools guide. Medium’s 7 ways.</div></div>
+      <div class="day"><h3>Day 26: Social Media Management with AI</h3><div class="content">Automate posts; offer services. <br><strong>Resource:</strong> Hostinger’s social media guide.</div></div>
+      <div class="day"><h3>Day 27: Final Project: Monetization Plan</h3><div class="content">Build a portfolio (e.g., AI-generated site) and pitch services. <br><strong>Resource:</strong> YouTube step-by-step tutorial.</div></div>
+      <div class="day"><h3>Day 28: Review & Next Steps</h3><div class="content">Network on LinkedIn, scale hustles. All resources above.</div></div>
+    </div>
+
+    <div style="text-align:center; margin:80px 0; color:#aaa; font-size:0.9em;">
+      <p><strong>Platforms:</strong> Use free tiers of ChatGPT, Google Colab, Hugging Face for projects.</p>
+      <p><strong>Income Potential:</strong> Start small—e.g., $100–500/month from freelancing initially, scaling to $1K+ with practice.</p>
+      <p><strong>Community:</strong> Join Reddit’s r/learnmachinelearning for support. Adjust pace as needed; consistency is key.</p>
+      <p><a href="mailto:AI.CASH@knowledgeisntpower.com" style="color:var(--a);">Need help? Email support →</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.day').forEach(el => {
+      el.addEventListener('click', () => el.classList.toggle('active'));
+    });
+  </script>
 </body>
 </html>
