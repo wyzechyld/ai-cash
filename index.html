@@ -12,7 +12,8 @@
             background: #000;
             color: #e8f5e9;
             line-height: 1.6;
-            padding: 20px;
+            padding: 20px 20px 100px 20px; /* Space for fixed nav */
+            min-height: 100vh;
         }
         h1, h2, h3 {
             font-family: 'Aldrich', sans-serif;
@@ -23,7 +24,6 @@
         h1 { font-size: 3em; margin: 0.5em 0; }
         h2 { font-size: 2.2em; margin: 0.5em 0; }
         h3 { font-size: 1.8em; }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -32,7 +32,6 @@
             border-radius: 10px;
             border: 1px solid #333;
         }
-
         /* GLITCH HEADING */
         h2.glitch {
             font-size: 28px !important;
@@ -55,14 +54,11 @@
         }
         @keyframes glitch-main { 0%,100%{transform:translate(0)} 20%{transform:translate(-1.5px,0)} 40%{transform:translate(1.8px,0)} 60%{transform:translate(-3.5px,0)} 80%{transform:translate(2.8px,0)} }
         @keyframes glitch-layer { 0%,100%{transform:translate(0)} 20%{transform:translate(2px,0)} 40%{transform:translate(-2.2px,0)} 60%{transform:translate(4px,0)} 80%{transform:translate(-3px,0)} }
-
         h2.static { font-size: 26px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; }
-
         .highlight { color: #ff00ff; font-weight: bold; }
-        ul { padding-left: 1.5em; list-style: none; }
+        ul { padding-left: 1.5e; list-style: none; }
         li { position: relative; margin: 0.8em 0; color: #e8f5e9; }
         li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
-
         .neon-break {
             border: none;
             height: 3px;
@@ -80,7 +76,6 @@
             font-weight: bold;
             text-shadow: 0 0 15px #ff00ff;
         }
-
         /* 4 DAY BOXES */
         .days-grid {
             display: flex !important;
@@ -120,7 +115,6 @@
             font-size: 1.25em;
             line-height: 1.7;
         }
-
         /* 3 WEEK CARDS */
         .weeks-grid {
             display: grid;
@@ -154,13 +148,11 @@
             margin: 0 0 14px;
         }
         .emoji { font-weight: bold; color: #b2ff59; font-size: 1.1em; }
-
         @media (max-width: 900px) {
             .weeks-grid { grid-template-columns: 1fr; }
             .days-grid { flex-direction: column; align-items: center; }
             .day-box { max-width: 90%; }
         }
-
         blockquote {
             border-left: 5px solid #0f0;
             padding-left: 25px;
@@ -177,6 +169,61 @@
         }
         a { color: #0f0; text-decoration: none; }
         a:hover { color: #ccff90; text-shadow: 0 0 15px #ccff90; }
+
+        /* === BOTTOM NAV BAR === */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 2px solid #b2ff59;
+            padding: 14px 0;
+            z-index: 9999;
+            box-shadow: 0 -8px 30px rgba(178, 255, 89, 0.3);
+        }
+        .bottom-nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .bottom-nav a {
+            color: #b2ff59;
+            text-decoration: none;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .bottom-nav a:hover {
+            color: #ccff90;
+            background: rgba(178, 255, 89, 0.15);
+            box-shadow: 0 0 25px #b2ff59;
+            transform: translateY(-3px);
+        }
+        .bottom-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ccff90;
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .bottom-nav a:hover::after {
+            width: 70%;
+        }
+        @media (max-width: 600px) {
+            .bottom-nav a { font-size: 0.75em; padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -187,11 +234,9 @@
         <br>
         <h2 class="glitch" data-text="KNOWLEDGE ISNT POWER">KNOWLEDGE ISNT POWER</h2><br>
         <span class="highlight">UNTIL IT PAYS YOU</span>
-
         <p style="text-align:left; font-size:1.0em;">
             AI.CASH is a 30-day crash course that transforms beginners into income-earning creators through practical AI training. This program blends accessible education with applied strategy, helping individuals move from zero experience and $0 to generating up to $500 or more in their first month.
         </p>
-
         <h2 class="static">LEARN FAST, EARN FASTER</h2>
         <p style="text-align:left; font-size:1.2em;">
             Whether you’re an entrepreneur, student, or freelancer, AI.CASH equips you with the tools, strategies, and skills to start earning immediately.<br>
@@ -202,17 +247,14 @@
                 <li>Portfolio in 30 minutes: Screenshot your audits + client testimonials = instant credibility.</li>
             </ul>
         </p>
-
         <hr class="neon-break">
         <div class="construction">( WEBPAGE UNDER CONSTRUCTION )</div>
         <hr class="neon-break">
-
         <h1>Start getting paid after 1 week!</h1>
         <p style="text-align:center;">
             Most “AI courses” waste months teaching theory. We don’t.<br><br>
             In only 7 days, you’ll walk away with real, billable skills that businesses and creators are already paying for right now.
         </p>
-
         <!-- 4 DAY BOXES -->
         <div class="days-grid">
             <div class="day-box">
@@ -232,9 +274,7 @@
                 <p>Ethics & Bias mastery – the secret sauce that lets you charge 2–3× more than amateurs</p>
             </div>
         </div>
-
         <hr class="neon-break">
-
         <!-- 3 WEEK CARDS -->
         <div class="weeks-grid">
             <div class="week-card">
@@ -259,13 +299,10 @@
                 <p class="emoji">By Day 28, you’ll have gigs, testimonials, and steady cash.</p>
             </div>
         </div>
-
         <hr class="neon-break">
-
         <blockquote>
             "The age of automation isn’t coming—it’s already here. AI.CASH bridges the gap between technology and opportunity, giving you the systems to earn smarter, faster, and more sustainably. You don’t need to predict the future when you can help build it. Start today and be part of the revolution shaping tomorrow’s economy." <br>-ChatGPT
         </blockquote>
-
         <h2>Get in touch</h2>
         <p style="text-align:center;">
             E-mail: <a href="mailto:AI.CASH@knowledgeisntpower.com">AI.CASH@knowledgeisntpower.com</a>
@@ -273,6 +310,18 @@
     </div>
 
     <footer>©Copyright. All rights reserved.</footer>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about.html">ABOUT</a></li>
+            <li><a href="/join.html">JOIN</a></li>
+            <li><a href="/contact.html">CONTACT</a></li>
+            <li><a href="/privacy.html">PRIVACY</a></li>
+            <li><a href="/legal.html">LEGAL</a></li>
+        </ul>
+    </nav>
 
     <!-- HTTPS Redirect -->
     <script>
