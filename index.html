@@ -271,5 +271,12 @@
     </div>
 
     <footer>©Copyright. All rights reserved.</footer>
+
+<script>
+  if (location.protocol !== 'https:') {
+    location.replace('https://' + location.host + location.pathname + location.search);
+  }
+</script>
+    
 </body>
 </html>
