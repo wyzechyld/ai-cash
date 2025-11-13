@@ -70,12 +70,10 @@
             box-shadow: 0 0 25px var(--glow-strong);
         }
 
-        /* === MULTI-SECTION CONTAINER SYSTEM === */
+        /* === FADE-IN/OUT CONTAINERS === */
         .section {
             max-width: 1000px;
-            margin: 0 auto 60px;
-            padding: 40px;
-            border-radius: 16px;
+            margin: 0 auto;
             position: relative;
             opacity: 0;
             transform: translateY(30px);
@@ -86,18 +84,29 @@
             transform: translateY(0);
         }
 
-        .section.opaque {
-            background: rgba(10, 15, 12, 0.95);
-            border: 1px solid rgba(60, 179, 113, 0.5);
+        /* TOP: OPAQUE → FADES OUT */
+        .section.top {
+            background: linear-gradient(to bottom, 
+                rgba(10, 15, 12, 0.95) 0%, 
+                rgba(10, 15, 12, 0.7) 70%, 
+                transparent 100%);
+            padding: 40px 40px 100px;
+            border-radius: 16px 16px 0 0;
             backdrop-filter: blur(4px);
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.6),
-                0 0 30px rgba(60, 179, 113, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
         }
 
-        .section.transparent {
-            background: transparent;
-            padding: 80px 20px;
+        /* BOTTOM: FADES IN → OPAQUE */
+        .section.bottom {
+            background: linear-gradient(to top, 
+                rgba(10, 15, 12, 0.95) 0%, 
+                rgba(10, 15, 12, 0.7) 30%, 
+                transparent 100%);
+            padding: 100px 40px 40px;
+            border-radius: 0 0 16px 16px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+            margin-top: -60px;
         }
 
         h1, h2, h3 { color: var(--primary); text-align: center; text-transform: uppercase; }
@@ -154,71 +163,107 @@
             text-shadow: 0 0 15px var(--primary);
         }
 
-        /* === FLOATING CARDS (DAY BOXES & WEEK CARDS) === */
-        .day-box, .week-card {
-            background: rgba(15, 25, 20, 0.92) !important;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(60, 179, 113, 0.6) !important;
-            box-shadow: 
-                0 0 50px var(--glow),
-                0 8px 32px rgba(0,0,0,0.7) !important;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-        }
-        .day-box.visible, .week-card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .day-box:hover, .week-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 
-                0 0 100px var(--glow-strong),
-                0 20px 60px rgba(0,0,0,0.8);
-            z-index: 10;
-        }
-
-        /* 4 DAY BOXES */
+        /* === DAY BOXES: HOVER REVEAL === */
         .days-grid {
             display: flex !important;
             flex-wrap: wrap;
             gap: 35px;
             justify-content: center;
-            padding: 70px 20px;
             max-width: 1400px;
-            margin: 0 auto;
+            margin: -60px auto 0; /* Pulls up to top container */
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
+
         .day-box {
             flex: 1 1 300px;
             min-width: 280px;
             max-width: 360px;
+            background: rgba(15, 25, 20, 0.92) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(60, 179, 113, 0.6);
             border-radius: 18px;
             padding: 35px 25px;
             text-align: center;
+            box-shadow: 0 0 50px var(--glow), 0 8px 32px rgba(0,0,0,0.7);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
         }
+        .day-box.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .day-box:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 0 100px var(--glow-strong), 0 20px 60px rgba(0,0,0,0.8);
+        }
+
         .day-title {
             color: var(--light);
-            font-size: 2em;
+            font-size: 2.8em;
             letter-spacing: 3px;
-            margin: 0 0 22px 0;
+            margin: 0;
             text-shadow: 0 0 20px var(--accent);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
         }
-        .day-box p { color: var(--text); font-size: 1.25em; line-height: 1.7; }
 
-        /* 3 WEEK CARDS */
+        .day-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            color: var(--text);
+            font-size: 1.25em;
+            line-height: 1.7;
+            z-index: 1;
+        }
+
+        .day-box:hover .day-title {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .day-box:hover .day-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* === WEEK CARDS === */
         .weeks-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 35px;
             max-width: 1200px;
-            margin: 70px auto;
+            margin: 80px auto;
             padding: 0 20px;
         }
         .week-card {
+            background: rgba(15, 25, 20, 0.92) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(60, 179, 113, 0.6);
             border-radius: 18px;
             padding: 32px;
+            box-shadow: 0 0 50px var(--glow), 0 8px 32px rgba(0,0,0,0.7);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+        .week-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .week-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 0 100px var(--glow-strong), 0 20px 60px rgba(0,0,0,0.8);
         }
         .week-card h2 { color: var(--primary); font-size: 1.7em; margin-bottom: 10px; }
         .week-card h3 { color: var(--accent); font-size: 1.4em; margin: 0 0 14px; }
@@ -226,7 +271,7 @@
 
         @media (max-width: 900px) {
             .weeks-grid { grid-template-columns: 1fr; }
-            .days-grid { flex-direction: column; align-items: center; }
+            .days-grid { flex-direction: column; align-items: center; margin-top: -40px; }
             .day-box { max-width: 90%; }
         }
 
@@ -249,7 +294,7 @@
         a { color: var(--accent); text-decoration: none; }
         a:hover { color: var(--light); text-shadow: 0 0 15px var(--accent); }
 
-        /* === HAMBURGER NAV BAR === */
+        /* === HAMBURGER NAV === */
         .bottom-nav {
             position: fixed;
             bottom: 0; left: 0; right: 0;
@@ -369,8 +414,8 @@
         <span></span><span></span><span></span>
     </button>
 
-    <!-- SECTION 1: OPAQUE (INTRO) -->
-    <div class="section opaque">
+    <!-- TOP SECTION: FADE OUT -->
+    <div class="section top">
         <div style="text-align: center;">
             <img src="https://i.imgur.com/bXX93Eu.png" alt="AI.CASH Logo" style="max-width: 100%; height: auto;" />
         </div>
@@ -400,56 +445,64 @@
         </p>
     </div>
 
-    <!-- SECTION 2: TRANSPARENT (FLOATING CARDS) -->
-    <div class="section transparent">
-        <!-- 4 DAY BOXES -->
-        <div class="days-grid">
-            <div class="day-box">
-                <h3 class="day-title">Day 1–2</h3>
-                <p>Understand exactly what AI is, what it can’t do, and how to spot hype vs real money-making tools</p>
-            </div>
-            <div class="day-box">
-                <h3 class="day-title">Day 3–4</h3>
-                <p>Master the 3 types of AI (Narrow, ML, Generative) + Neural Networks basics – enough to sound like an expert on client calls</p>
-            </div>
-            <div class="day-box">
-                <h3 class="day-title">Day 5</h3>
-                <p>Hands-on with free ChatGPT, Gemini, Grok – generate your first sellable assets in minutes</p>
-            </div>
-            <div class="day-box">
-                <h3 class="day-title">Day 6–7</h3>
-                <p>Ethics & Bias mastery – the secret sauce that lets you charge 2–3× more than amateurs</p>
+    <!-- DAY BOXES: HOVER REVEAL -->
+    <div class="days-grid">
+        <div class="day-box">
+            <h3 class="day-title">Day 1–2</h3>
+            <div class="day-content">
+                Understand exactly what AI is, what it can’t do, and how to spot hype vs real money-making tools
             </div>
         </div>
-        <hr class="neon-break">
-        <!-- 3 WEEK CARDS -->
-        <div class="weeks-grid">
-            <div class="week-card">
-                <h2>Week 2 – Earn $200–$800</h2>
-                <h3>“Copy-Paste Python = Paid AI Tools”</h3>
-                <p>Learn simple Python in Google Colab. Load data, clean it with Pandas, and build mini AI tools like <em>YouTube Title Predictor</em> or <em>Etsy Price Optimizer</em>.</p>
-                <p class="emoji">Sell on Fiverr ($30–$150/tool) or offer data cleanup gigs at $30/hr.</p>
-                <p class="emoji">Students often earn $250+ before Week 3.</p>
+        <div class="day-box">
+            <h3 class="day-title">Day 3–4</h3>
+            <div class="day-content">
+                Master the 3 types of AI (Narrow, ML, Generative) + Neural Networks basics – enough to sound like an expert on client calls
             </div>
-            <div class="week-card">
-                <h2>Week 3 – Scale to $500–$2,000/mo</h2>
-                <h3>“Prompts + No-Code = 10× Output”</h3>
-                <p>Turn ChatGPT into a content machine. Make viral TikToks, blogs, Canva AI art, or chatbots using Bubble/Adalo—no coding needed.</p>
-                <p class="emoji">Charge $15–$50/post or $100–$300/chatbot.</p>
-                <p class="emoji">Move from side hustle to real monthly income.</p>
+        </div>
+        <div class="day-box">
+            <h3 class="day-title">Day 5</h3>
+            <div class="day-content">
+                Hands-on with free ChatGPT, Gemini, Grok – generate your first sellable assets in minutes
             </div>
-            <div class="week-card">
-                <h2>Week 4 – Automate $1K–$5K Systems</h2>
-                <h3>“Portfolio + Pitch Scripts = Cash Flow”</h3>
-                <p>Build a portfolio, grab our gig templates, and send proven DMs to land retainers.</p>
-                <p class="emoji">Offer AI social media packages ($200–$500/mo) or chatbots to 10 clients = $2K+ recurring.</p>
-                <p class="emoji">By Day 28, you’ll have gigs, testimonials, and steady cash.</p>
+        </div>
+        <div class="day-box">
+            <h3 class="day-title">Day 6–7</h3>
+            <div class="day-content">
+                Ethics & Bias mastery – the secret sauce that lets you charge 2–3× more than amateurs
             </div>
         </div>
     </div>
 
-    <!-- SECTION 3: OPAQUE (FINAL) -->
-    <div class="section opaque">
+    <!-- NEON PAGE BREAK -->
+    <hr class="neon-break" style="margin: 100px auto;">
+
+    <!-- WEEK CARDS -->
+    <div class="weeks-grid">
+        <div class="week-card">
+            <h2>Week 2 – Earn $200–$800</h2>
+            <h3>“Copy-Paste Python = Paid AI Tools”</h3>
+            <p>Learn simple Python in Google Colab. Load data, clean it with Pandas, and build mini AI tools like <em>YouTube Title Predictor</em> or <em>Etsy Price Optimizer</em>.</p>
+            <p class="emoji">Sell on Fiverr ($30–$150/tool) or offer data cleanup gigs at $30/hr.</p>
+            <p class="emoji">Students often earn $250+ before Week 3.</p>
+        </div>
+        <div class="week-card">
+            <h2>Week 3 – Scale to $500–$2,000/mo</h2>
+            <h3>“Prompts + No-Code = 10× Output”</h3>
+            <p>Turn ChatGPT into a content machine. Make viral TikToks, blogs, Canva AI art, or chatbots using Bubble/Adalo—no coding needed.</p>
+            <p class="emoji">Charge $15–$50/post or $100–$300/chatbot.</p>
+            <p class="emoji">Move from side hustle to real monthly income.</p>
+        </div>
+        <div class="week-card">
+            <h2>Week 4 – Automate $1K–$5K Systems</h2>
+            <h3>“Portfolio + Pitch Scripts = Cash Flow”</h3>
+            <p>Build a portfolio, grab our gig templates, and send proven DMs to land retainers.</p>
+            <p class="emoji">Offer AI social media packages ($200–$500/mo) or chatbots to 10 clients = $2K+ recurring.</p>
+            <p class="emoji">By Day 28, you’ll have gigs, testimonials, and steady cash.</p>
+        </div>
+    </div>
+
+    <!-- BOTTOM SECTION: FADE IN -->
+    <div class="section bottom">
         <hr class="neon-break">
         <blockquote>
             "The age of automation isn’t coming—it’s already here. AI.CASH bridges the gap between technology and opportunity, giving you the systems to earn smarter, faster, and more sustainably. You don’t need to predict the future when you can help build it. Start today and be part of the revolution shaping tomorrow’s economy." <br>-ChatGPT
@@ -497,7 +550,7 @@
             btn.classList.toggle('active');
         }
 
-        // SCROLL FADE-IN + FLOATING CARDS
+        // SCROLL FADE-IN
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
