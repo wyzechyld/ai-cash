@@ -59,15 +59,15 @@
         ul { padding-left: 1.5e; list-style: none; }
         li { position: relative; margin: 0.8em 0; color: #e8f5e9; }
         li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
-        .neon-break {
-            border: none;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent);
-            box-shadow: 0 0 20px #b2ff59, 0 0 40px #ccff90;
-            margin: 70px auto;
-            max-width: 80%;
-            border-radius: 2px;
-        }
+       .neon-break {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #cccccc 30%, #e0e0e0 50%, #cccccc 70%, transparent);
+    box-shadow: 0 0 20px #cccccc, 0 0 40px #e0e0e0;
+    margin: 70px auto;
+    max-width: 80%;
+    border-radius: 2px;
+}
         .construction {
             font-size: 1.5em;
             color: #3CB371;
@@ -87,29 +87,29 @@
             margin: 0 auto;
         }
         .day-box {
-            flex: 1 1 300px;
-            min-width: 280px;
-            max-width: 360px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 2px solid #b2ff59;
-            border-radius: 18px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(178, 255, 89, 0.8);
-            transition: all 0.4s ease;
-        }
-        .day-box:hover {
-            border-color: #ccff90;
-            box-shadow: 0 0 100px rgba(204, 255, 144, 1);
-            transform: translateY(-15px);
-        }
-        .day-title {
-            color: #ccffcc;
-            font-size: 2em;
-            letter-spacing: 3px;
-            margin: 0 0 22px 0;
-            text-shadow: 0 0 20px rgba(204, 255, 204, 0.9);
-        }
+    flex: 1 1 300px;
+    min-width: 280px;
+    max-width: 360px;
+    background: rgba(10, 10, 10, 0.95);
+    border: 2px solid #cccccc;
+    border-radius: 18px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(204, 204, 204, 0.8);
+    transition: all 0.4s ease;
+}
+.day-box:hover {
+    border-color: #e0e0e0;
+    box-shadow: 0 0 100px rgba(224, 224, 224, 1);
+    transform: translateY(-15px);
+}
+     .day-title {
+    color: #e0e0e0;
+    font-size: 2em;
+    letter-spacing: 3px;
+    margin: 0 0 22px 0;
+    text-shadow: 0 0 20px rgba(224, 224, 224, 0.9);
+}
         .day-box p {
             color: #e8f5e9;
             font-size: 1.25em;
@@ -132,22 +132,26 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .week-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(178, 255, 89, 0.6);
-            border-color: #b2ff59;
-        }
-        .week-card h2 {
-            color: #3CB371;
-            font-size: 1.7em;
-            margin-bottom: 10px;
-        }
-        .week-card h3 {
-            color: #ccffcc;
-            font-size: 1.4em;
-            margin: 0 0 14px;
-        }
-        .emoji { font-weight: bold; color: #b2ff59; font-size: 1.1em; }
+     .week-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(204, 204, 204, 0.6);
+    border-color: #cccccc;
+}
+       .week-card h2 {
+    color: #cccccc;
+    font-size: 1.7em;
+    margin-bottom: 10px;
+}
+.week-card h3 {
+    color: #e0e0e0;
+    font-size: 1.4em;
+    margin: 0 0 14px;
+}
+.emoji {
+    font-weight: bold;
+    color: #cccccc;
+    font-size: 1.1em;
+}
         @media (max-width: 900px) {
             .weeks-grid { grid-template-columns: 1fr; }
             .days-grid { flex-direction: column; align-items: center; }
