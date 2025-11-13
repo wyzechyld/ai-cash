@@ -9,45 +9,49 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; overflow-x: hidden; background: #000; }
 
-        /* CYBERPUNK CITY BACKGROUND — FIXED DIRECT LINK */
+        /* CYBERPUNK CITY BACKGROUND — VISIBLE & FIXED */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://i.imgur.com/kYa5nC4.png') center/cover no-repeat fixed;
             z-index: -2;
+            opacity: 1 !important;
             background-attachment: fixed;
         }
 
-        /* BLACK VOID WITH ANIMATED PIXEL TEARS */
+        /* BLACK VOID OVERLAY WITH PIXEL TEARS — FIXED VISIBILITY */
         .void-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: #000;
             z-index: -1;
             pointer-events: none;
+            opacity: 1 !important;
         }
 
         /* TOP TEAR — CUTS BEFORE "CONSTRUCTION" */
         .tear-top {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 750px; /* ← ADJUST THIS */
+            top: 0; left: 0; width: 100%; height: 750px; /* TUNE THIS */
             background: linear-gradient(to bottom, transparent 80%, #000 100%);
             mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,82 Q60,98 35,88 Q15,95 0,85 Z" fill="black"/></svg>') bottom/100% 280px repeat-x;
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
             animation: tear-top 11s infinite ease-in-out;
+            opacity: 1 !important;
         }
 
         /* BOTTOM TEAR — REVEALS CITY AFTER WEEK CARDS */
         .tear-bottom {
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 720px; /* ← ADJUST THIS */
+            bottom: 0; left: 0; width: 100%; height: 720px; /* TUNE THIS */
             background: #000;
             mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,100 L100,18 Q40,2 65,12 Q85,5 100,15 Q75,8 0,20 Z" fill="black"/></svg>') top/100% 280px repeat-x;
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
             animation: tear-bottom 13s infinite ease-in-out;
+            opacity: 1 !important;
         }
 
         @keyframes tear-top {
@@ -59,11 +63,11 @@
             50% { transform: translateY(-12px) skewX(-3deg); }
         }
 
-        /* MAIN CONTAINER — GLASS PANEL */
+        /* MAIN CONTAINER — GLASS, VISIBLE TEXT */
         .container {
             max-width: 920px;
             margin: 0 auto;
-            background: rgba(10, 10, 15, 0.82);
+            background: rgba(10, 10, 15, 0.6);
             padding: 35px;
             border-radius: 12px;
             position: relative;
@@ -73,12 +77,17 @@
             box-shadow: 0 0 40px rgba(0, 255, 0, 0.2);
         }
 
-        /* TEXT FIX — ALWAYS VISIBLE */
-        body, p, li, h1, h2, h3, .highlight, .construction, blockquote, footer {
+        /* FORCE ALL TEXT VISIBLE — NO BLACK-ON-BLACK */
+        body, p, li, h1, h2, h3, .highlight, .construction, blockquote, footer, a, span, div {
             color: #e8f5e9 !important;
         }
+        a { color: #0f0 !important; }
+        a:hover { color: #ccff90 !important; }
+        .highlight { color: #ff00ff !important; }
+        .construction { color: #ff00ff !important; text-shadow: 0 0 15px #ff00ff; }
+        blockquote { color: #b2ff59 !important; }
 
-        /* WINDOWS TO THE CITY */
+        /* WINDOWS TO CITY — FIXED VISIBILITY */
         .days-grid, .weeks-grid {
             background: transparent !important;
             padding: 70px 20px;
@@ -86,11 +95,12 @@
             z-index: 3;
         }
         .day-box, .week-card {
-            background: rgba(5, 5, 10, 0.45) !important;
+            background: rgba(5, 5, 10, 0.5) !important;
             backdrop-filter: blur(12px);
             border: 2px solid #b2ff59 !important;
             box-shadow: 0 0 50px rgba(178, 255, 89, 0.8) !important;
             transition: all 0.4s ease;
+            opacity: 1 !important;
         }
         .day-box:hover, .week-card:hover {
             border-color: #ccff90 !important;
@@ -98,7 +108,7 @@
             transform: translateY(-15px) !important;
         }
 
-        /* REST OF YOUR ORIGINAL STYLES — CLEANED & FIXED */
+        /* ORIGINAL STYLES — CLEANED */
         h1, h2, h3 { font-family: 'Aldrich', sans-serif; text-transform: uppercase; text-align: center; color: #3CB371 !important; }
         h1 { font-size: 3em; margin: 0.5em 0; }
         h2 { font-size: 2.2em; margin: 0.5em 0; }
@@ -110,21 +120,22 @@
         h2.static { font-size: 26px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; }
         .highlight { color: #ff00ff !important; font-weight: bold; }
         ul { padding-left: 1.5em; list-style: none; }
+        li { position: relative; margin: 0.8em 0; color: #e8f5e9 !important; }
         li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
         .neon-break { border: none; height: 3px; background: linear-gradient(to right, transparent, #b2ff59 30%, #ccff90 50%, #b2ff59 70%, transparent); box-shadow: 0 0 20px #b2ff59, 0 0 40px #ccff90; margin: 70px auto; max-width: 80%; border-radius: 2px; }
         .construction { font-size: 1.5em; color: #ff00ff !important; text-align: center; margin: 2.5em 0; font-weight: bold; text-shadow: 0 0 15px #ff00ff; }
         .days-grid { display: flex !important; flex-wrap: wrap; gap: 35px; justify-content: center; max-width: 1400px; margin: 0 auto; }
         .day-box { flex: 1 1 300px; min-width: 280px; max-width: 360px; border-radius: 18px; padding: 35px 25px; text-align: center; }
-        .day-title { color: #ccffcc; font-size: 2em; letter-spacing: 3px; margin: 0 0 22px 0; text-shadow: 0 0 20px rgba(204, 255, 204, 0.9); }
-        .day-box p { font-size: 1.25em; line-height: 1.7; }
+        .day-title { color: #ccffcc !important; font-size: 2em; letter-spacing: 3px; margin: 0 0 22px 0; text-shadow: 0 0 20px rgba(204, 255, 204, 0.9); }
+        .day-box p { font-size: 1.25em; line-height: 1.7; color: #e8f5e9 !important; }
         .weeks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; max-width: 1200px; margin: 70px auto; padding: 0 20px; }
         .week-card { border-radius: 18px; padding: 32px; }
-        .week-card h2 { color: #3CB371; font-size: 1.7em; margin-bottom: 10px; }
-        .week-card h3 { color: #ccffcc; font-size: 1.4em; margin: 0 0 14px; }
-        .emoji { font-weight: bold; color: #b2ff59; font-size: 1.1em; }
+        .week-card h2 { color: #3CB371 !important; font-size: 1.7em; margin-bottom: 10px; }
+        .week-card h3 { color: #ccffcc !important; font-size: 1.4em; margin: 0 0 14px; }
+        .emoji { font-weight: bold; color: #b2ff59 !important; font-size: 1.1em; }
         @media (max-width: 900px) { .weeks-grid { grid-template-columns: 1fr; } .days-grid { flex-direction: column; align-items: center; } .day-box { max-width: 90%; } }
         blockquote { border-left: 5px solid #0f0; padding-left: 25px; font-style: italic; margin: 3em 0; color: #b2ff59 !important; font-size: 1.1em; }
-        footer { text-align: center; margin: 100px 0 30px; font-size: 0.9em; color: #666 !important; }
+        footer { text-align: center; margin: 100px 0 30px; font-size: 0.9em; color: #999 !important; }
         a { color: #0f0 !important; text-decoration: none; }
         a:hover { color: #ccff90 !important; text-shadow: 0 0 15px #ccff90; }
     </style>
