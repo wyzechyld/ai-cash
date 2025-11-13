@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI.CASH – Full 30-Day Curriculum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    <style>
+        /* === COPY ALL CSS FROM index.html === */
+        /* (Same :root, body, glitch, neon-break, etc.) */
+        /* === PLUS TAP-TO-REVEAL FOR MOBILE === */
+        .day-box, .week-card { cursor: pointer; }
+        .day-box .day-content, .week-card .week-content { opacity: 0; visibility: hidden; transition: .4s; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 85%; z-index: 1; }
+        .day-box.active .day-content, .week-card.active .week-content { opacity: 1; visibility: visible; }
+        .day-box.active .day-title, .week-card.active h2 { opacity: 0; transform: translateY(-20px); }
+        @media (hover: hover) {
+            .day-box:hover .day-title, .week-card:hover h2 { opacity:0; transform:translateY(-20px); }
+            .day-box:hover .day-content, .week-card:hover .week-content { opacity:1; visibility:visible; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SAME HEADER, NAV, THEME TOGGLE -->
+
+    <div class="section top">
+        <h1>FULL 30-DAY CURRICULUM</h1>
+        <p style="font-size:1.2em; max-width:800px; margin:30px auto; text-align:center;">
+            Welcome! Here’s your <strong>complete roadmap</strong> to earning with AI.
+        </p>
+    </div>
+
+    <!-- WEEK 1 -->
+    <h2 style="text-align:center; color:var(--light); margin:60px 0 40px;">Week 1: AI Basics</h2>
+    <div class="days-grid" style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; max-width:1200px; margin:0 auto;">
+        <div class="day-box"><h3 class="day-title">Day 1–2</h3><div class="day-content"><strong>AI Concepts</strong><br>Elements of AI (1-2)</div></div>
+        <div class="day-box"><h3 class="day-title">Day 3–4</h3><div class="day-content"><strong>Neural Nets + Ethics</strong><br>Google AI Essentials</div></div>
+        <div class="day-box"><h3 class="day-title">Day 5–7</h3><div class="day-content"><strong>Hands-On Tools</strong><br>ChatGPT, Gemini, Grok</div></div>
+    </div>
+
+    <!-- WEEK 2, 3, 4 (same pattern) -->
+    <h2 style="text-align:center; color:var(--light); margin:80px 0 40px;">Week 2–4: Monetization</h2>
+    <div class="weeks-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:35px; max-width:1200px; margin:0 auto;">
+        <div class="week-card"><h2>Week 2</h2><div class="week-content">Python + Fiverr Tools ($200–$800)</div></div>
+        <div class="week-card"><h2>Week 3</h2><div class="week-content">Prompts + No-Code ($500–$2K)</div></div>
+        <div class="week-card"><h2>Week 4</h2><div class="week-content">Portfolio + Retainers ($1K–$5K)</div></div>
+    </div>
+
+    <div style="text-align:center; margin:100px 0;">
+        <a href="/dashboard.html" style="padding:16px 40px; background:var(--accent); color:#fff; border-radius:30px; text-decoration:none; font-size:1.2em; box-shadow:0 0 40px var(--glow-strong);">
+            GO TO YOUR DASHBOARD
+        </a>
+    </div>
+
+    <script>
+        // TAP TO REVEAL
+        document.querySelectorAll('.day-box, .week-card').forEach(el => {
+            el.add onEvent('click', () => el.classList.toggle('active'));
+        });
+        // SAME DARK MODE, OBSERVER, ETC.
+    </script>
+</body>
+</html>
