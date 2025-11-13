@@ -189,38 +189,47 @@
             list-style: none;
             margin: 0;
             padding: 0;
-        }
-        .bottom-nav a {
-            color: #b2ff59;
-            text-decoration: none;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1.8px;
-            padding: 10px 14px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .bottom-nav a:hover {
-            color: #ccff90;
-            background: rgba(178, 255, 89, 0.15);
-            box-shadow: 0 0 25px #b2ff59;
-            transform: translateY(-3px);
-        }
-        .bottom-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: #ccff90;
-            transition: width 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .bottom-nav a:hover::after {
-            width: 70%;
-        }
+       /* === NAV BAR LINKS COLOR & GLOW === */
+.bottom-nav a {
+    color: #3CB371;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    text-shadow: 0 0 15px #ff00ff;
+}
+.bottom-nav a:hover {
+    color: #ccff90;
+    background: rgba(178, 255, 89, 0.15);
+    box-shadow: 0 0 30px #ff00ff;
+    transform: translateY(-3px);
+}
+.bottom-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ff00ff;
+    transition: width 0.3s ease;
+    transform: translateX(-50%);
+}
+.bottom-nav a:hover::after {
+    width: 70%;
+}
+            /* === PLUS SYMBOLS STAY GREEN === */
+li:before {
+    content: "+";
+    color: #0f0;
+    position: absolute;
+    left: -1.5em;
+    font-weight: bold;
+}
         @media (max-width: 600px) {
             .bottom-nav a { font-size: 0.75em; padding: 8px 10px; }
         }
