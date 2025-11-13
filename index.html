@@ -6,38 +6,81 @@
     <title>KNOWLEDGE ISNT POWER - AI.CASH</title>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #000;
+            --text: #e8f5e9;
+            --primary: #4FD1C5;
+            --accent: #00C4B4;
+            --light: #E0F7FA;
+            --deep: #2A9D8F;
+            --glow: rgba(79, 209, 197, 0.7);
+            --glow-strong: rgba(0, 196, 180, 0.9);
+        }
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #B2DFDB;
+            --primary: #00C4B4;
+            --accent: #4FD1C5;
+            --light: #E0F7FA;
+            --deep: #1A6F66;
+            --glow: rgba(0, 196, 180, 0.5);
+            --glow-strong: rgba(0, 196, 180, 0.8);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Aldrich', sans-serif;
-            background: #000;
-            color: #e8f5e9;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            padding: 20px 20px 100px 20px; /* Space for fixed nav */
+            padding: 20px 20px 120px;
             min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
         }
-        h1, h2, h3 {
-            font-family: 'Aldrich', sans-serif;
-            text-transform: uppercase;
-            text-align: center;
-            color: #a64dff;
+
+        /* === DARK MODE TOGGLE === */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid var(--primary);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8em;
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--glow);
         }
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 25px var(--glow-strong);
+        }
+
+        h1, h2, h3 { color: var(--primary); text-align: center; text-transform: uppercase; }
         h1 { font-size: 3em; margin: 0.5em 0; }
         h2 { font-size: 2.2em; margin: 0.5em 0; }
         h3 { font-size: 1.8em; }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             padding: 30px;
             border-radius: 10px;
             border: 1px solid #333;
+            transition: background 0.4s ease;
         }
+
         /* GLITCH HEADING */
         h2.glitch {
             font-size: 28px !important;
             font-weight: 900;
             letter-spacing: 4px;
-            color: #ccffcc !important;
+            color: var(--light) !important;
             position: relative;
             display: inline-block;
             animation: glitch-main 4.2s steps(30) infinite;
@@ -48,34 +91,40 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             color: rgba(255, 255, 255, 0.35);
-            text-shadow: -0.75px 0 rgba(188,244,213,0.35), 0.75px 0 rgba(188,244,213,0.35);
+            text-shadow: -0.75px 0 var(--accent), 0.75px 0 var(--accent);
             animation: glitch-layer 4.2s steps(30) infinite reverse;
             pointer-events: none;
         }
         @keyframes glitch-main { 0%,100%{transform:translate(0)} 20%{transform:translate(-1.5px,0)} 40%{transform:translate(1.8px,0)} 60%{transform:translate(-3.5px,0)} 80%{transform:translate(2.8px,0)} }
         @keyframes glitch-layer { 0%,100%{transform:translate(0)} 20%{transform:translate(2px,0)} 40%{transform:translate(-2.2px,0)} 60%{transform:translate(4px,0)} 80%{transform:translate(-3px,0)} }
-        h2.static { font-size: 26px !important; font-weight: 900; letter-spacing: 4px; color: #ccffcc !important; }
-        .highlight { color: #3CB371; font-weight: bold; }
-        ul { padding-left: 1.5e; list-style: none; }
-        li { position: relative; margin: 0.8em 0; color: #e8f5e9; }
-        li:before { content: "+"; color: #0f0; position: absolute; left: -1.5em; font-weight: bold; }
-       .neon-break {
-    border: none;
-    height: 3px;
-    background: linear-gradient(to right, transparent, #cccccc 30%, #e0e0e0 50%, #cccccc 70%, transparent);
-    box-shadow: 0 0 20px #cccccc, 0 0 40px #e0e0e0;
-    margin: 70px auto;
-    max-width: 80%;
-    border-radius: 2px;
-}
+
+        h2.static { font-size: 26px !important; color: var(--light) !important; }
+
+        .highlight { color: var(--accent); font-weight: bold; }
+
+        ul { padding-left: 1.5em; list-style: none; }
+        li { position: relative; margin: 0.8em 0; color: var(--text); }
+        li:before { content: "+"; color: var(--deep); position: absolute; left: -1.5em; font-weight: bold; }
+
+        .neon-break {
+            border: none;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary) 30%, var(--accent) 50%, var(--primary) 70%, transparent);
+            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--accent);
+            margin: 70px auto;
+            max-width: 80%;
+            border-radius: 2px;
+        }
+
         .construction {
             font-size: 1.5em;
-            color: #oeoeoe;
+            color: var(--accent);
             text-align: center;
             margin: 2.5em 0;
             font-weight: bold;
-            text-shadow: 0 0 15px #ffffff;
+            text-shadow: 0 0 15px var(--primary);
         }
+
         /* 4 DAY BOXES */
         .days-grid {
             display: flex !important;
@@ -87,34 +136,31 @@
             margin: 0 auto;
         }
         .day-box {
-    flex: 1 1 300px;
-    min-width: 280px;
-    max-width: 360px;
-    background: rgba(10, 10, 10, 0.95);
-    border: 2px solid #cccccc;
-    border-radius: 18px;
-    padding: 35px 25px;
-    text-align: center;
-    box-shadow: 0 0 50px rgba(204, 204, 204, 0.8);
-    transition: all 0.4s ease;
-}
-.day-box:hover {
-    border-color: #3CB371;
-    box-shadow: 0 0 100px rgba(166, 77, 255, 1);
-    transform: translateY(-15px);
-}
-     .day-title {
-    color: #3CB371;
-    font-size: 2em;
-    letter-spacing: 3px;
-    margin: 0 0 22px 0;
-    text-shadow: 0 0 20px rgba(224, 224, 224, 0.9);
-}
-        .day-box p {
-            color: #e8f5e9;
-            font-size: 1.25em;
-            line-height: 1.7;
+            flex: 1 1 300px;
+            min-width: 280px;
+            max-width: 360px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 18px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 0 50px var(--glow);
+            transition: all 0.4s ease;
         }
+        .day-box:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 100px var(--glow-strong);
+            transform: translateY(-15px);
+        }
+        .day-title {
+            color: var(--light);
+            font-size: 2em;
+            letter-spacing: 3px;
+            margin: 0 0 22px 0;
+            text-shadow: 0 0 20px var(--accent);
+        }
+        .day-box p { color: var(--text); font-size: 1.25em; line-height: 1.7; }
+
         /* 3 WEEK CARDS */
         .weeks-grid {
             display: grid;
@@ -132,60 +178,50 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-     .week-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(204, 204, 204, 0.6);
-    border-color: #cccccc;
-}
-       .week-card h2 {
-    color: #6597e6;
-    font-size: 1.7em;
-    margin-bottom: 10px;
-}
-.week-card h3 {
-    color: #a64dff;
-    font-size: 1.4em;
-    margin: 0 0 14px;
-}
-.emoji {
-    font-weight: bold;
-    color: #3CB371;
-    font-size: 1.1em;
-}
+        .week-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--glow);
+            border-color: var(--primary);
+        }
+        .week-card h2 { color: var(--primary); font-size: 1.7em; margin-bottom: 10px; }
+        .week-card h3 { color: var(--accent); font-size: 1.4em; margin: 0 0 14px; }
+        .emoji { font-weight: bold; color: var(--deep); font-size: 1.1em; }
+
         @media (max-width: 900px) {
             .weeks-grid { grid-template-columns: 1fr; }
             .days-grid { flex-direction: column; align-items: center; }
             .day-box { max-width: 90%; }
         }
+
         blockquote {
-            border-left: 5px solid #oeoeoe;
+            border-left: 5px solid var(--primary);
             padding-left: 25px;
             font-style: italic;
             margin: 3em 0;
-            color: #6597e6;
+            color: #B2DFDB;
             font-size: 1.1em;
         }
+
         footer {
             text-align: center;
             margin: 100px 0 30px;
             font-size: 0.9em;
-            color: #999;
+            color: #666;
         }
-        a { color: #0f0; text-decoration: none; }
-        a:hover { color: #ccff90; text-shadow: 0 0 15px #ccff90; }
 
-        /* === BOTTOM NAV BAR — FIXED & FINAL === */
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--light); text-shadow: 0 0 15px var(--accent); }
+
+        /* === BOTTOM NAV BAR === */
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            bottom: 0; left: 0; right: 0;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(12px);
             border-top: 2px solid #ffffff;
             padding: 14px 0;
-            z-index: 9999;
-            box-shadow: 0 -8px 30px rgba(255, 255, 255, 0.4);
+            z-index: 9998;
+            box-shadow: 0 -8px 30px rgba(255, 255, 255, 0.3);
         }
         .bottom-nav ul {
             display: flex;
@@ -195,7 +231,7 @@
             padding: 0;
         }
         .bottom-nav a {
-            color: #3CB371 !important;
+            color: var(--primary) !important;
             text-decoration: none;
             font-size: 0.9em;
             text-transform: uppercase;
@@ -204,12 +240,12 @@
             border-radius: 10px;
             transition: all 0.3s ease;
             position: relative;
-            text-shadow: 0 0 15px #6597e6 !important;
+            text-shadow: 0 0 15px var(--accent) !important;
         }
         .bottom-nav a:hover {
             color: #ffffff !important;
-            background: rgba(101, 151, 230, 0.4);
-            box-shadow: 0 0 30px #6597e6 !important;
+            background: rgba(79, 209, 197, 0.3);
+            box-shadow: 0 0 30px var(--accent) !important;
             transform: translateY(-3px);
         }
         .bottom-nav a::after {
@@ -219,19 +255,24 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: #6597e6;
+            background: var(--accent);
             transition: width 0.3s ease;
             transform: translateX(-50%);
         }
-        .bottom-nav a:hover::after {
-            width: 70%;
-        }
+        .bottom-nav a:hover::after { width: 70%; }
+
         @media (max-width: 600px) {
             .bottom-nav a { font-size: 0.75em; padding: 8px 10px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- DARK MODE TOGGLE -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        Dark Mode
+    </div>
+
     <div class="container">
         <div style="text-align: center;">
             <img src="https://i.imgur.com/bXX93Eu.png" alt="AI.CASH Logo" style="max-width: 100%; height: auto;" />
@@ -256,10 +297,11 @@
         <div class="construction">( WEBPAGE UNDER CONSTRUCTION )</div>
         <hr class="neon-break">
         <h1>Get paid after 1 week!</h1>
-        <p style="text-align:center; margin-left=100px; margin-right=100px;">
-             <span class="highlight">Most “AI courses” waste months teaching theory. We don’t.<br><br>
-           With hands on training, you’ll walk away with real skills that businesses and creators are paying others for right now.</span>
+        <p style="text-align:center; margin: 0 100px; padding: 20px 0;">
+            <span class="highlight">Most “AI courses” waste months teaching theory. We don’t.<br><br>
+            With hands-on training, you’ll walk away with real skills that businesses and creators are paying others for right now.</span>
         </p>
+
         <!-- 4 DAY BOXES -->
         <div class="days-grid">
             <div class="day-box">
@@ -280,6 +322,7 @@
             </div>
         </div>
         <hr class="neon-break">
+
         <!-- 3 WEEK CARDS -->
         <div class="weeks-grid">
             <div class="week-card">
@@ -305,9 +348,11 @@
             </div>
         </div>
         <hr class="neon-break">
+
         <blockquote>
             "The age of automation isn’t coming—it’s already here. AI.CASH bridges the gap between technology and opportunity, giving you the systems to earn smarter, faster, and more sustainably. You don’t need to predict the future when you can help build it. Start today and be part of the revolution shaping tomorrow’s economy." <br>-ChatGPT
         </blockquote>
+
         <h2 class="static">>Get in touch</h2>
         <p style="text-align:center;">
             E-mail: <a href="mailto:AI.CASH@knowledgeisntpower.com">AI.CASH@knowledgeisntpower.com</a>
@@ -316,7 +361,7 @@
 
     <footer>©Copyright. All rights reserved.</footer>
 
-    <!-- BOTTOM NAVIGATION BAR -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
         <ul>
             <li><a href="/">HOME</a></li>
@@ -327,6 +372,23 @@
             <li><a href="/legal.html">LEGAL</a></li>
         </ul>
     </nav>
+
+    <!-- DARK MODE SCRIPT -->
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            document.querySelector('.theme-toggle').textContent = next === 'dark' ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // Load saved theme
+        const saved = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', saved);
+        document.querySelector('.theme-toggle').textContent = saved === 'dark' ? 'Light Mode' : 'Dark Mode';
+    </script>
 
     <!-- HTTPS Redirect -->
     <script>
