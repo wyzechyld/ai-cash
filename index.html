@@ -17,12 +17,26 @@
     .cta { display: inline-block; padding: 16px 40px; background: var(--p); color: #000; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 0 40px var(--g); margin: 20px; transition: all 0.3s ease; font-size: 1.2em; }
     .cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--p); }
     .count { font-size: 2em; color: var(--a); margin: 20px 0; text-shadow: 0 0 20px var(--p); }
-    .preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; margin: 50px 0; }
+    .preview { 
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Fixed 2-column layout */
+      gap: 20px;
+      margin: 50px auto;
+      max-width: 600px; /* Constrain width for centering */
+    }
     .box { background: rgba(15,25,20,.92); padding: 25px; border-radius: 16px; border: 1px solid rgba(60,179,113,.6); box-shadow: 0 0 40px var(--g); }
     .urgent { background: #FF4136; color: white; padding: 6px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-size: 0.9em; animation: pulse 2s infinite; }
     @keyframes pulse { 0% {opacity:1} 50% {opacity:0.7} 100% {opacity:1} }
     .bullet-list { text-align: left; max-width: 650px; margin: 20px auto; padding-left: 20px; }
     .bullet-list li { margin-bottom: 15px; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 650px) {
+      .preview {
+        grid-template-columns: 1fr; /* Stack on mobile */
+        max-width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -57,9 +71,9 @@
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdPIzcSfh-9UM4_pU-GXwluIpfTiClEcH2JKoK_M9oAJ8Oxrg/viewform?usp=header" class="cta">CLAIM FREE WEEK → UNLOCK FULL 28 DAYS</a>
 
     <h3 style="margin:50px 0 20px; color:var(--l);">Week 1 Preview (Free)</h3>
-    <div class="preview">
+    <div class="preview"> <!-- Modified grid container -->
       <div class="box"><h3>Day 1-2</h3><p> Understand exactly what AI is, what it can’t do, and how to spot hype vs real money-making tools</p></div>
-      <div class="box"><h3>Day 3-4</h3><p> Master the 3 types of AI (Narrow, ML, Generative) + Neural Networks basics</p></div><br>
+      <div class="box"><h3>Day 3-4</h3><p> Master the 3 types of AI (Narrow, ML, Generative) + Neural Networks basics</p></div>
       <div class="box"><h3>Day 5</h3><p>Hands-on with free ChatGPT, Gemini, Grok – generate your first sellable assets in minutes</p></div>
       <div class="box"><h3>Day 6-7</h3><p>Ethics & Bias mastery – the secret sauce that lets you charge 2–3× more than amateurs</p></div>
     </div>
