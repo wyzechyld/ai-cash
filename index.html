@@ -14,27 +14,46 @@
     @keyframes g { 0%,100%{transform:translate(0)} 20%{transform:translate(-2px,0)} 40%{transform:translate(2px,0)} }
     .highlight { color: var(--a); font-weight: bold; }
     .neon { height: 3px; background: linear-gradient(90deg, transparent, var(--p) 30%, var(--a) 50%, var(--p) 70%, transparent); box-shadow: 0 0 20px var(--p); margin: 60px auto; max-width: 80%; }
-    .cta { display: inline-block; padding: 16px 40px; background: var(--p); color: #000; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 0 40px var(--g); margin: 20px; }
+    .cta { display: inline-block; padding: 16px 40px; background: var(--p); color: #000; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 0 40px var(--g); margin: 20px; transition: all 0.3s ease; font-size: 1.2em; }
+    .cta:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--p); }
     .count { font-size: 2em; color: var(--a); margin: 20px 0; text-shadow: 0 0 20px var(--p); }
     .preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; margin: 50px 0; }
     .box { background: rgba(15,25,20,.92); padding: 25px; border-radius: 16px; border: 1px solid rgba(60,179,113,.6); box-shadow: 0 0 40px var(--g); }
+    .urgent { background: #FF4136; color: white; padding: 6px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-size: 0.9em; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% {opacity:1} 50% {opacity:0.7} 100% {opacity:1} }
+    .bullet-list { text-align: left; max-width: 650px; margin: 20px auto; padding-left: 20px; }
+    .bullet-list li { margin-bottom: 15px; }
   </style>
 </head>
 <body>
 
   <div class="c">
     <img src="https://i.imgur.com/bXX93Eu.png" alt="AI.CASH" style="max-width: 100%; margin: 20px 0;">
-    <h1 class="glitch">KNOWLEDGE ISN'T POWER</h1>
-    <p><span class="highlight">UNTIL IT PAYS YOU</span></p>
-    <p>28-day program → <strong>$0 to $500+/mo</strong> with free AI tools</p>
-    <p>Dedicate 2–4 hours/day. By the end, you’ll be equipped to use platforms like ChatGPT, Google AI tools, or free ML libraries to create content, offer services, or build side hustles.</p>
+    
+    <!-- Added section -->
+    <h2 class="glitch" data-text="KNOWLEDGE ISNT POWER">KNOWLEDGE ISNT POWER</h2><br>
+    <span class="highlight">UNTIL IT PAYS YOU</span>
+    <p style="text-align:left; font-size:1.0em; max-width: 800px; margin: 20px auto;">
+        AI.CASH is a 30-day crash course that transforms beginners into income-earning creators through practical AI training. This program blends accessible education with applied strategy, helping individuals move from zero experience and $0 to generating up to $500 or more in their first month.
+    </p>
+    <h2 class="glitch">LEARN FAST, EARN FASTER</h2>
+    <p style="text-align:left; font-size:1.2em; max-width: 800px; margin: 20px auto;">
+        Whether you’re an entrepreneur, student, or freelancer, AI.CASH equips you with the tools, strategies, and skills to start earning immediately.<br>
+        <span class="highlight">Turn your efforts into real income!</span><br><br>
+        <ul class="bullet-list">
+            <li>Ethics = Instant Premium Pricing: Clients pay 50–200% more for “responsible AI” work.</li>
+            <li>Zero tools to buy: Everything runs on free ChatGPT, Google Gemini, Grok, Canva AI.</li>
+            <li>Portfolio in 30 minutes: Screenshot your audits + client testimonials = instant credibility.</li>
+        </ul>
+    </p>
+    <!-- End of added section -->
 
     <hr class="neon">
     <div style="font-size:1.5em; color:var(--a); font-weight:bold; text-shadow:0 0 15px var(--p);">( UNDER CONSTRUCTION )</div>
     <hr class="neon">
 
+    <div class="urgent">100 spots left — ends soon!</div>
     <div class="count" id="countdown"></div>
-    <p><strong>First Week FREE</strong> – Only 100 spots</p>
     <a href="join.html" class="cta">CLAIM FREE WEEK → UNLOCK FULL 28 DAYS</a>
 
     <h3 style="margin:50px 0 20px; color:var(--l);">Week 1 Preview (Free)</h3>
